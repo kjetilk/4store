@@ -25,6 +25,8 @@
 #include <glib.h>
 #include <pthread.h>
 #include <rasqal.h>
+#include <unistd.h>
+
 
 #include "4store-config.h"
 #include "query.h"
@@ -915,6 +917,7 @@ int fs_query_process_pattern(fs_query *q, rasqal_graph_pattern *pattern, raptor_
          * correct relative order, otherwise OPTIONAL blocks which share variables
          * give the wrong result */
         for (int j=start; j<=q->block; j++) {
+	    sleep(2); /* Inserted by Kjetil Kjernsmo for a experiment */
             if (!q->bb[j]) {
 #ifdef DEBUG_MERGE
                 printf("skipping B%d, no bindings\n", j);
