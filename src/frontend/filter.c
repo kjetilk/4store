@@ -24,6 +24,7 @@
 #include <time.h>
 #include <errno.h>
 #include <uuid/uuid.h>
+#include <unistd.h>
 
 #include "filter-datatypes.h"
 #include "filter.h"
@@ -983,6 +984,8 @@ fs_value fn_not(fs_query *q, fs_value a)
 
 fs_value fn_lang_matches(fs_query *q, fs_value l, fs_value p)
 {
+    usleep(2000); /* Inserted by Kjetil Kjernsmo for a experiment */
+
     if (fs_is_error(l)) {
 	return l;
     }
